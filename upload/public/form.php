@@ -17,10 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
     if (empty($errors) && $_FILES['image']['error'] == 0) {
-        $fileName = uniqid('', true) . '.' . $extension;
-        move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile . uniqid() . $extension);
+        $_FILES['image']['name'] = uniqid('', true) . '.' . $extension;
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile);
         echo "Votre fichier a bien été upload";
-        var_dump($_FILES);
     }
 }
 
